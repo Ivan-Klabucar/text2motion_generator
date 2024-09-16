@@ -7,3 +7,5 @@ __pycache__
 *.pkl
 *.pt
 *.npy
+*.DS_Store
+app/services/models/smplx/transfer_data/

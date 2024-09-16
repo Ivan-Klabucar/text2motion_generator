@@ -20,9 +20,8 @@ $ docker build -t text2motion .
 ## Run Docker container
 ```
 $ docker run --rm -it -p 8111:8000 -v /Users/klabs/Downloads/app_vids:/src/app/videos text2motion
-
-replace /Users/klabs/Downloads/app_vids with whatever directory on your machine you want the generated .mp4 videos to be saved.
 ```
+replace /Users/klabs/Downloads/app_vids with whatever directory on your machine you want the generated .mp4 videos to be saved.
 
 
 ## Development
