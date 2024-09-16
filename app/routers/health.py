@@ -1,5 +1,6 @@
-from fastapi import APIRouter, status
 from typing import Dict
+
+from fastapi import APIRouter, status
 
 health_router = APIRouter(prefix="")
 
