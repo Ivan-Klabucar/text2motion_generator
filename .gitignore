@@ -1,0 +1,9 @@
+.venv*
+*.pyc
+.vscode
+__pycache__
+.mypy_cache
+.ruff_cache
+*.pkl
+*.pt
+*.npy
