@@ -54,5 +54,5 @@ pip install -r requirements-dev.txt
 ```
 Format and check code
 ```
-$ isort . && black . && ruff --ignore E501 . && bandit -c bandit.yaml -rq . && mypy .
+$ isort . --skip app/services/models/smplx/ && black . --exclude 'app/services/models/smplx/' && ruff --ignore E501 . --fix --exclude app/services/models/smplx/ && bandit -c bandit.yaml -rq . && mypy . --exclude app/services/models/smplx/
 ```
