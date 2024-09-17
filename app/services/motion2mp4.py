@@ -1,5 +1,8 @@
 import os
 from pathlib import Path
+import boto3
+import logging
+from botocore.exceptions import ClientError
 
 import matplotlib
 import numpy as np
@@ -65,15 +68,47 @@ def visualize_sequence_3d(seq, out_path, joint_paths=None):
     ani = FuncAnimation(fig, update, frames=seq.shape[0], interval=50)
     ani.save(out_path, writer="ffmpeg")
 
+def upload_file_to_s3(file_name, bucket, object_name=None):
+    """
+    Upload a file to an S3 bucket.
+
+    :param file_name: Path to file to upload
+    :param bucket: S3 bucket name
+    :param object_name: S3 object name (optional)
+    :return: True if file was uploaded, else False
+    """
+    # Use the file name as the object name if not specified
+    if object_name is None:
+        object_name = file_name.name
+
+    # Upload the file
+    s3_client = boto3.client('s3')
+    try:
+        response = s3_client.upload_file(str(file_name), bucket, object_name)
+    except ClientError as e:
+        logging.error(e)
+        return False
+    return True
+
 
 class Motion_To_Mp4_Converter:
     def __init__(self, joint_paths=AMASS_joint_paths) -> None:
         self.vid_out_dir = Path(os.getenv("VIDEO_OUPUT_DIR"))
         self.joint_paths = joint_paths
+        self.s3_bucket = os.getenv("S3_BUCKET_NAME")
 
     def create_visualization(self, seq, name):
         output_path = self.vid_out_dir / name
         visualize_sequence_3d(seq, output_path, joint_paths=self.joint_paths)
+
+        if self.s3_bucket is not None:
+            success = upload_file_to_s3(output_path, self.s3_bucket)
+            if success:
+                logging.info(f"Uploaded {name} to S3 bucket {self.s3_bucket}")
+            else:
+                logging.error(f"Failed to upload {name} to S3 bucket {self.s3_bucket}")
+        else:
+            logging.info(f"S3 bucket is not set.")
 
 
 amass_motion2mp4_service = Motion_To_Mp4_Converter(joint_paths=AMASS_joint_paths)

@@ -21,6 +21,7 @@ ENV CLIP_TEXT_ENCODER_PATH=/src/app/resources/model_state_dicts/CLIP_ViT_B32_sta
 ENV SMPL_MODEL_PATH=/src/app/resources/SMPL_models/SMPL_NEUTRAL.pkl
 ENV JOINT_REGRESSOR_TRAIN_EXTRA=/src/app/resources/SMPL_models/J_regressor_extra.npy
 ENV VIDEO_OUPUT_DIR=/src/app/videos
+ENV S3_BUCKET_NAME=text2motion-backups
 
 EXPOSE 8000
 

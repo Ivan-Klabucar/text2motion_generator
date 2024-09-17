@@ -13,4 +13,5 @@ ftfy==6.2.3
 regex==2024.9.11
 tqdm==4.66.5
 chumpy==0.70
+boto3==1.35.20
 git+https://github.com/openai/CLIP.git
