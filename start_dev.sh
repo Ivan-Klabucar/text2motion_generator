@@ -7,7 +7,7 @@ export JOINT_REGRESSOR_TRAIN_EXTRA=/Users/klabs/Documents/projects/text2motion_a
 export VIDEO_OUPUT_DIR=/Users/klabs/Downloads/app_vids
 
 gunicorn 'app.main:app' \
-    --bind ${ADDRESS:-0.0.0.0}:${PORT:-8111} \
+    --bind ${ADDRESS:-0.0.0.0}:${PORT:-8000} \
     --workers ${WORKERS:-1} \
     --worker-class uvicorn.workers.UvicornWorker \
     --log-level info \

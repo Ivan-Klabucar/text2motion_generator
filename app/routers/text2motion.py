@@ -19,7 +19,8 @@ async def text2motion_generation(request: TextPrompt) -> Dict[str, str]:
     motion_xyz, SMPL_params, text_embedding = text2motion_generation_service.infer(
         request
     )
+    vid_name = f"{request.user_prompt}.mp4"
     amass_motion2mp4_service.create_visualization(
-        motion_xyz, f"{request.user_prompt}.mp4"
+        motion_xyz, vid_name
     )
-    return {"joints": str(motion_xyz)}
+    return {"video_name": vid_name}
