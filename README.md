@@ -1,5 +1,14 @@
 # Text To (Stickman) Motion Generation App
-Try out the capabilities of the text2motion motion MotionCLIP with just a few easy commands!
+Try out the capabilities of the text2motion motion MotionCLIP with just a few easy commands!<br>
+This repository houses the code for the text2motion generator.<br>
+The code for the webapp can be found at:<br>
+[webapp_text2motion](https://github.com/Ivan-Klabucar/webapp_text2motion)<br>
+<br>
+The docker-compose configuration for both repositories can be found at:<br>
+[text2motion_dockercompose](https://github.com/Ivan-Klabucar/text2motion_dockercompose)<br>
+
+</br>
+
 </br>
 
 ## Prepare your environemnt
